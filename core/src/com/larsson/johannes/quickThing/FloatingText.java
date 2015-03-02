@@ -1,0 +1,30 @@
+package com.larsson.johannes.quickThing;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class FloatingText extends GameObject {
+	
+	String text;
+	int lifeTime;
+	int maxLife;
+	
+	public FloatingText(String text, float x, float y, int maxLife) {
+		super(new Animation(Assets.bullet, x, y, 0, 0, 0, 0), x, y);
+		this.text = text;
+		this.maxLife = lifeTime = maxLife;
+	}
+	
+	public void update() {
+		lifeTime--;
+		if (lifeTime <= 0) Game.getScene().toRemove.add(this);
+		move(0, -2);
+	}
+	
+	public void draw(SpriteBatch batch) {
+		Color oldColor = Assets.smallFont.getColor();
+		Assets.smallFont.setColor(new Color(1, 1, 1, (float)lifeTime / maxLife));
+		Assets.smallFont.draw(batch, text, getX(), getY());
+		Assets.smallFont.setColor(oldColor);
+	}
+}
