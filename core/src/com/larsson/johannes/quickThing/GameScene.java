@@ -51,11 +51,7 @@ public class GameScene extends Scene {
 	}
 	
 	private ArrayList<Enemy> getWave() {
-		ArrayList<Enemy> e = new ArrayList<Enemy>();
-		for (int i = 0; i < getLevel() + 1; i++) {
-			e.add(EnemyFactory.randomEnemy(getLevel() / 2 + 1));
-		}
-		return e;
+		return EnemyFactory.getWave(level);
 	}
 	
 	//TODO: combos

@@ -9,7 +9,7 @@ public class MenuScene extends Scene {
 	
 	public MenuScene() {
 		super.initialize();
-		final int buttonW = 400, buttonH = 80, offset = 50;
+		final int buttonW = 400, buttonH = 120, offset = 60;
 		newGame = new Button("new game", Game.V_W / 2 - buttonW / 2, Game.V_H / 2 - buttonH / 2 + offset, buttonW, buttonH);
 		continueGame = new Button("continue game", Game.V_W / 2 - buttonW / 2, Game.V_H / 2 - buttonH / 2 - offset, buttonW, buttonH);
 	}

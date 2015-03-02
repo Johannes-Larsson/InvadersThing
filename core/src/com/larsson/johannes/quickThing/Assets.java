@@ -21,11 +21,12 @@ public class Assets {
 	explosion,
 	powerup,
 	smarterShooter,
-	tankyEnemy;
+	tankyEnemy,
+	tripleShooter;
 	
 	public static void loadAll() {
 		FreeTypeFontGenerator g = new FreeTypeFontGenerator(Gdx.files.internal("C64_Pro_Mono_v1.0-STYLE.ttf"));
-		smallFont = g.generateFont(26);
+		smallFont = g.generateFont(30);
 		
 		player = new Texture("player.png");
 		bullet = new Texture("bullet.png");
@@ -36,5 +37,6 @@ public class Assets {
 		powerup = new Texture("powerup.png");
 		smarterShooter = new Texture("smarterShooter.png");
 		tankyEnemy = new Texture("tankyEnemy.png");
+		tripleShooter = new Texture("tripleShooter.png");
 	}
 }

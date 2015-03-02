@@ -27,7 +27,7 @@ public class Button {
 		TextBounds b = Assets.smallFont.getBounds(text);
 		Color o = Assets.smallFont.getColor();
 		Assets.smallFont.setColor(color);
-		Assets.smallFont.draw(batch, text, x + w / 2 - b.width / 2, y + h / 2 - b.height);
+		Assets.smallFont.draw(batch, text, x + w / 2 - b.width / 2, y + h / 2 - b.height / 2);
 		Assets.smallFont.setColor(o);
 	}
 }
