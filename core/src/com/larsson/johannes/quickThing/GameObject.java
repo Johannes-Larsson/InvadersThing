@@ -45,15 +45,18 @@ public class GameObject {
 	}
 	
 	public void drawShadow(SpriteBatch batch) {
-		final float depthMult = .1f, scale = .7f;
+		final float depthMult = .1f, scale = .9f;
 		Color oldColor = animation.sprite.getColor();
 		animation.sprite.setColor(new Color(.4f, .4f, .4f, .5f));
 		float oldX = animation.sprite.getX();
+		float oldY = animation.sprite.getY();
 		animation.sprite.setX(oldX + (Game.V_W / 2 - oldX - animation.sprite.getWidth() / 2) * depthMult);
+		animation.sprite.setY(oldY + (Game.V_H / 2 - oldY - animation.sprite.getHeight() / 2) * depthMult);
 		animation.sprite.setScale(scale);
 		animation.sprite.draw(batch);
 		animation.sprite.setColor(oldColor);
 		animation.sprite.setX(oldX);
+		animation.sprite.setY(oldY);
 		animation.sprite.setScale(1);
 	}
 	

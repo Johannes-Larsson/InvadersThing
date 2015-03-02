@@ -11,10 +11,10 @@ public class Powerup extends GameObject {
 	
 	public void update() {
 		final float targetH = 100;
-		if (Math.abs(getY() - targetH) < 10) {
-			vy = -4;
+		if (Math.abs(getY() - targetH) < 40) {
+			vy = -.3f;
 		}
-		else vy = -.7f;
+		else vy = -2f;
 		super.update();
 	}
 }
