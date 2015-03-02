@@ -27,4 +27,8 @@ public class FloatingText extends GameObject {
 		Assets.smallFont.draw(batch, text, getX(), getY());
 		Assets.smallFont.setColor(oldColor);
 	}
+	
+	public void drawShadow(SpriteBatch batch) {
+		//dont draw a shadow :^)))
+	}
 }

@@ -21,7 +21,9 @@ public class Rocket extends GameObject {
 	}
 	
 	public void onDestroy() {
-		final int size = 200;
-		Game.getScene().toAdd.add(new Explosion(getCenterX() - size / 2, getCenterY() - size / 2, size));
+		if (isOnScreen()) {
+			final int size = 200;
+			Game.getScene().toAdd.add(new Explosion(getCenterX() - size / 2, getCenterY() - size / 2, size));
+		}
 	}
 }

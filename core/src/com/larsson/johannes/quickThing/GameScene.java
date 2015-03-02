@@ -96,6 +96,7 @@ public class GameScene extends Scene {
 	}
 	
 	public void draw(SpriteBatch batch) {
+		for (GameObject g : objects) g.drawShadow(batch);
 		drawGUI(batch);
 		super.draw(batch);
 	}

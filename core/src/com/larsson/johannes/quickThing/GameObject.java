@@ -1,5 +1,6 @@
 package com.larsson.johannes.quickThing;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameObject {
@@ -41,6 +42,19 @@ public class GameObject {
 	
 	public void draw(SpriteBatch batch) {
 		animation.draw(batch);
+	}
+	
+	public void drawShadow(SpriteBatch batch) {
+		final float depthMult = .1f, scale = .7f;
+		Color oldColor = animation.sprite.getColor();
+		animation.sprite.setColor(new Color(.4f, .4f, .4f, .5f));
+		float oldX = animation.sprite.getX();
+		animation.sprite.setX(oldX + (Game.V_W / 2 - oldX - animation.sprite.getWidth() / 2) * depthMult);
+		animation.sprite.setScale(scale);
+		animation.sprite.draw(batch);
+		animation.sprite.setColor(oldColor);
+		animation.sprite.setX(oldX);
+		animation.sprite.setScale(1);
 	}
 	
 	public void setX(float x) {

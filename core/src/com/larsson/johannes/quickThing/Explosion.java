@@ -13,6 +13,7 @@ public class Explosion extends GameObject {
 	
 	public Explosion(float x, float y, float size) {
 		super(new Animation(Assets.explosion, size, size, 6, 20, 20, 5), x, y);
+		Game.screenShake += (int)(.3f * size) - Game.screenShake / 2;
 		damaging = true;
 	}
 	
