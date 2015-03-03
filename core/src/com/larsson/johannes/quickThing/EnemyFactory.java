@@ -33,7 +33,7 @@ public class EnemyFactory {
 		if (min < 0) min = 0;
 		
 		int no = 5;
-		if (no > level) no = level;
+		if (no > level) no = level + 1;
 		
 		for (int i = 0; i < no; i++) e.add(randomEnemy(min, max));
 		

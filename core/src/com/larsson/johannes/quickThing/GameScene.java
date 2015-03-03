@@ -31,7 +31,7 @@ public class GameScene extends Scene {
 	}
 	
 	public void loadGame() {
-		level = load("level", 0);
+		level = load("level", -1);
 		player.lives = load("hp", 10);
 		score = load("score", 0);
 		player.rockets = load("rockets", 0);
@@ -106,8 +106,8 @@ public class GameScene extends Scene {
 		Assets.smallFont.draw(batch, scoreS, padding, padding + scoreB.height);
 		Assets.smallFont.draw(batch, levelS, Game.V_W - (padding + levelB.width), padding + levelB.height);
 		System.out.println(player == null);
-		drawImgWithText(batch, Assets.powerup, Game.V_W / 3, padding, ": " + player.rockets);
-		drawImgWithText(batch, Assets.player, (Game.V_W / 3) * 2, padding, ": " + player.lives);
+		drawImgWithText(batch, Assets.powerup, (Game.V_W / 3) * 1.2f, padding, ": " + player.rockets);
+		drawImgWithText(batch, Assets.player, (Game.V_W / 3) * 2 * .8f, padding, ": " + player.lives);
 		//batch.draw(Assets.powerup, Game.V_W / 3, padding, 25, 25);
 		//Assets.smallFont.draw(batch, ": " + player.rockets, Game.V_W / 3 + 35, padding + scoreB.height);
 		

@@ -7,6 +7,9 @@ public class IntroScene extends Scene {
 	final String[] messages = new String[] {
 			"the earth is being attacked!",
 			"you're the only pilot left who can save it!",
+			"shoot them to fend them off",
+			"but pay attention!\nsome drop rockets you can shoot",
+			"be sure to pick them up!",
 			"the two lower thirds of the screen\nare split into the following controls: ",
 			"go left | shoot rocket | go right",
 			"the upper third shoots regular bullets",
@@ -23,12 +26,11 @@ public class IntroScene extends Scene {
 	
 	Button skip;
 	
-	int doneDelay;
-	final int delay = 30;
+	final int delay = 60;
 	
 	public IntroScene() {
 		super.initialize();
-		doneDelay = delay;
+		skip = new Button("skip", 20, 40, 100, 50);
 	}
 	
 	public void update () {
@@ -41,20 +43,38 @@ public class IntroScene extends Scene {
 				return;
 			}
 			else if (charIndex > messages[messageIndex].length()) {
-				charIndex = 0;
-				messageIndex++;
-				doneDelay = delay;
-				if (messageIndex >= messages.length) Game.setScene(Scenes.game);
+				nextMessage();
 			}
 		}
 		
+		if (Input.wasJustPressed()) {
+			if (isComplete()) nextMessage();
+			else completeMessage();
+		}
+		
+		if (skip.isClicked()) Game.setScene(Scenes.game);
+	}
+	
+	private boolean isComplete() {
+		return charIndex == messages[messageIndex].length();
+	}
+	
+	private void completeMessage() {
+		charIndex = messages[messageIndex].length();
+		progressionCounter = -delay;
+	}
+	
+	private void nextMessage() {
+		charIndex = 0;
+		messageIndex++;
+		progressionCounter = 0;
+		if (messageIndex >= messages.length) Game.setScene(Scenes.game);
 	}
 	
 	public void draw(SpriteBatch batch) {
 		String s = //charIndex + " / " + messages[messageIndex].length();//
 				messages[messageIndex].substring(0, charIndex);
 		Assets.smallFont.drawMultiLine(batch, s, Game.V_W / 2 - Assets.smallFont.getMultiLineBounds(s).width / 2, Game.V_H / 2 + Assets.smallFont.getMultiLineBounds(s).height / 2);
+		skip.draw(batch);
 	}
-	
-	
 }

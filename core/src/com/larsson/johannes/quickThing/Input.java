@@ -52,6 +52,20 @@ public class Input {
 		getAllInput();
 	}
 	
+	public static boolean isPressed() {
+		for (boolean b : isPressed) if (b) return true;
+		return false;
+	}
+	
+	public static boolean wasPressed() {
+		for (boolean b : wasPressed) if (b) return true;
+		return false;
+	}
+	
+	public static boolean wasJustPressed() {
+		return isPressed() && !wasPressed();
+	}
+	
 	public static boolean intersectingWith(float _x, float _y, float width, float height) {
 		for (int i = 0; i < points; i++) if (x[i] >= _x && y[i] >= _y && x[i] <= _x + width && y[i] <= _y + height) return true;
 		return false;
