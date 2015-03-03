@@ -24,7 +24,7 @@ public class MenuScene extends Scene {
 			Game.preferences.clear();
 			Game.preferences.flush();
 			Scenes.game = new GameScene();
-			Game.setScene(Scenes.game);
+			Game.setScene(Scenes.intro);
 		}
 		else if (continueGame.isClicked() && canContinue) {
 			Scenes.game = new GameScene();
