@@ -12,12 +12,6 @@ public class AndroidLauncher extends AndroidApplication {
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		try {
-			initialize(new Game(), config);
-		}
-		catch (Exception e) {
-			TextView v = new TextView(getContext());
-			for (StackTraceElement s : e.getStackTrace()) v.setText(v.getText() + s.toString());
-		}
+		initialize(new Game(), config);
 	}
 }
