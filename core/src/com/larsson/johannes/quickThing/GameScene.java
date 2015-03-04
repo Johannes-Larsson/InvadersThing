@@ -14,6 +14,7 @@ public class GameScene extends Scene {
 	public int score;
 	
 	private int spawnCounter;
+	private int cloudCounter;
 	private int level;
 	private ArrayList<Enemy> wave;
 	
@@ -81,6 +82,10 @@ public class GameScene extends Scene {
 				spawnCounter = 45;
 			}
 		}
+		
+		final int clouds = 12, rate = 60;
+		if (cloudCounter <= (rate + 1) * clouds) cloudCounter++;
+		if (cloudCounter % rate == 0) toAdd.add(new Cloud(clouds * rate));
 
 		super.update();
 	}

@@ -22,7 +22,7 @@ public class GameOverScene extends Scene {
 			Scenes.game.initialize();
 			Game.setScene(Scenes.game);
 		}
-		else if (retry.isClicked()) {
+		else if (retry.isClicked() && false) {
 			Scenes.game.initialize();
 			Game.setScene(Scenes.game);
 		}
@@ -32,7 +32,7 @@ public class GameOverScene extends Scene {
 		String s = "game over";
 		Assets.smallFont.draw(batch, s, Game.V_W / 2 - Assets.smallFont.getBounds(s).width / 2, Game.V_H - 150);
 		
-		retry.draw(batch);
+		//retry.draw(batch);
 		restart.draw(batch);
 		
 		super.draw(batch);
