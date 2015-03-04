@@ -15,27 +15,19 @@ public class TripleShooter extends Enemy {
 		lives = 2;
 		killScore = 25;
 		sinkSpeed = .15f;
+		shootTime = 200;
 	}
 	
 	public void update() {
-		animation.setFrame(lives - 1);
-		
-		if (hasSunk) {
-			if (shootTimer > 0) {
-				shootTimer--;
-			}
-			else {
-				
-				for (int i = -1; i < 2; i++) {
-					Bullet b = new Bullet(getCenterX(), getY(), 7, (float)Math.PI / -2 + i * .2f, 1);
-					Scenes.game.toAdd.add(b);
-					myBullets.add(b);
-				}
-				
-				shootTimer = 120;
-			}
-		}
-		
+		animation.setFrame(lives - 1);		
 		super.update();
+	}
+	
+	public void onShoot() {
+		for (int i = -1; i < 2; i++) {
+			Bullet b = new Bullet(getCenterX(), getY(), 7, (float)Math.PI / -2 + i * .2f, 1);
+			Scenes.game.toAdd.add(b);
+			myBullets.add(b);
+		}
 	}
 }

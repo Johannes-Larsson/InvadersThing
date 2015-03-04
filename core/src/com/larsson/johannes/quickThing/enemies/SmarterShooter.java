@@ -9,17 +9,14 @@ import com.larsson.johannes.quickThing.Game;
 import com.larsson.johannes.quickThing.Player;
 import com.larsson.johannes.quickThing.Scenes;
 
-public class SmarterShooter extends Enemy {
-
-	private final int shootingTime = 120;
-	private int shootingTimer;
-	
+public class SmarterShooter extends Enemy {	
 	
 	public SmarterShooter() {
 		super(new Animation(Assets.smarterShooter, 90, 90, 1, 14, 14, 0));
 		lives = 1;
 		killScore = 20;
 		sinkSpeed = .07f;
+		shootTime = 150;
 	}
 	
 	public void update() {
@@ -33,18 +30,14 @@ public class SmarterShooter extends Enemy {
 			vx = -speed;
 		}
 		
-		if (shootingTimer <= 0) {
-			if (hasSunk) {
-				shootingTimer = shootingTime;
-				Bullet b = new Bullet(getCenterX(), getCenterY(), 7, -MathUtils.PI / 2, 1);
-				myBullets.add(b);
-				Game.getScene().toAdd.add(b);
-			}
-		}
-		else shootingTimer--;
-		
 		moveAwayFromHitWall(0);
 		
 		super.update();
+	}
+	
+	public void onShoot() {
+		Bullet b = new Bullet(getCenterX(), getCenterY(), 7, -MathUtils.PI / 2, 1);
+		myBullets.add(b);
+		Game.getScene().toAdd.add(b);
 	}
 }

@@ -17,6 +17,9 @@ public class Enemy extends GameObject {
 	protected Direction hitWall;
 	protected float sinkSpeed;
 	protected static ArrayList<Bullet> myBullets;
+	protected int shootTime;
+	
+	private int shootTimer;
 	
 	public Enemy(Animation animation) {
 		super(animation, MathUtils.random(minSpawn, maxSpawn), Game.V_H);
@@ -26,6 +29,7 @@ public class Enemy extends GameObject {
 		sinkSpeed = .5f;
 		killScore = 10;
 		killOnScreenExit = true;
+		shootTime = -1;
 	}
 	
 	public String getType()	{ return "enemy"; }
@@ -50,6 +54,10 @@ public class Enemy extends GameObject {
 		if (MathUtils.randomBoolean((killScore  - Scenes.game.player.rockets) / 100f)) Game.getScene().toAdd.add(new Powerup(getX(), getY()));
 	}
 	
+	public void onShoot() {
+		
+	}
+	
 	public void update() {
 		if (getY() > Game.V_H - standardHeight) vy = -5;
 		else {
@@ -71,6 +79,14 @@ public class Enemy extends GameObject {
 			hitWall = Direction.Right;
 		}
 		else hitWall = Direction.None;
+		
+		if (shootTime != -1 && hasSunk) {
+			shootTimer++;
+			if (shootTimer >= shootTime) {
+				shootTimer = 0;
+				onShoot();
+			}
+		}
 		
 		super.update();
 	}

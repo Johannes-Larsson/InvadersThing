@@ -10,7 +10,7 @@ import com.larsson.johannes.quickThing.Scenes;
 
 public class ShootingEnemy extends Enemy {
 
-	final int shootTime = 220;
+	//final int shootTime = 220;
 	
 	private int shootTimer, directionChangeCounter;
 	
@@ -20,19 +20,17 @@ public class ShootingEnemy extends Enemy {
 		lives = 1;
 		killScore = 15;
 		sinkSpeed = .1f;
+		shootTime = 120;
+	}
+	
+	public void onShoot() {
+		shootTimer = shootTime;
+		Bullet b = new Bullet(getCenterX(), getY(), 7, (float)Math.PI / -2, 1);
+		Scenes.game.toAdd.add(b);
+		myBullets.add(b);
 	}
 	
 	public void update() {
-		if (shootTimer > 0) {
-			shootTimer--;
-		}
-		else if (hasSunk) {
-			shootTimer = shootTime;
-			Bullet b = new Bullet(getCenterX(), getY(), 7, (float)Math.PI / -2, 1);
-			Scenes.game.toAdd.add(b);
-			myBullets.add(b);
-		}
-		
 		if (directionChangeCounter < 300) {
 			directionChangeCounter++;
 		}
