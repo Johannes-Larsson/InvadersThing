@@ -11,12 +11,16 @@ public class Cloud extends GameObject {
 		vy =  (Game.V_H + 40) / -(float)clouds;
 		originalX = getX();
 		System.out.println(String.valueOf(vy));
+		shadowDepth = .05f;
+		animation.sprite.setAlpha(.7f);
 	}
+	
+	public String getType() { return "cloud"; }
 	
 	public void update() {
 		
-		final float offset = -.3f;		
-		setX(originalX + offset * (Scenes.game.player.getCenterX() - Game.V_W / 2));
+		final float paralax = -.2f;		
+		setX(originalX + paralax * (Scenes.game.player.getCenterX() - Game.V_W / 2));
 		
 		if (getY() < -40) {
 			setX(MathUtils.random(Game.V_W + 100) - 200);

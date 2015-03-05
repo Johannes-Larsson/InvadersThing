@@ -70,11 +70,11 @@ public class Enemy extends GameObject {
 		}
 
 		final float padding = 40;
-		if (getX() < padding && vx < 0) {
+		if (getX() < padding) {
 			vx = 0;
 			hitWall = Direction.Left;
 		}
-		else if (getX() + getW() + padding> Game.V_W && vx > 0) {
+		else if (getX() + getW() + padding > Game.V_W) {
 			vx = 0;
 			hitWall = Direction.Right;
 		}
@@ -87,6 +87,9 @@ public class Enemy extends GameObject {
 				onShoot();
 			}
 		}
+		
+		final float paralax = .1f;
+		if (hitWall == Direction.None) move(Scenes.game.player.vx * paralax, 0);
 		
 		super.update();
 	}

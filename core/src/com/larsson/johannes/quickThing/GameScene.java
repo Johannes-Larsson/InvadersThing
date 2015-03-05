@@ -97,9 +97,12 @@ public class GameScene extends Scene {
 	}
 	
 	public void draw(SpriteBatch batch) {
-		for (GameObject g : objects) g.drawShadow(batch);
+		for (GameObject g : objects) if (g.getType() == "cloud") g.drawShadow(batch);
+		for (GameObject g : objects) if (g.getType() == "cloud") g.draw(batch);
+		for (GameObject g : objects) if (g.getType() != "cloud") g.drawShadow(batch);
+		for (GameObject g : objects) if (g.getType() != "cloud") g.draw(batch);
 		drawGUI(batch);
-		super.draw(batch);
+		//super.draw(batch);
 	}
 	
 	private void drawGUI(SpriteBatch batch) {

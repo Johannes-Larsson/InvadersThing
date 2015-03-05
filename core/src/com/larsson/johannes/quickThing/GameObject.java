@@ -7,6 +7,8 @@ public class GameObject {
 	public final String type = "base";
 	public String getType() { return type; }
 	
+	protected float shadowDepth;
+	
 	public Animation animation;
 	
 	public float depth;
@@ -21,6 +23,7 @@ public class GameObject {
 		animation.sprite.setOriginCenter();
 		setX(x);
 		setY(y);
+		shadowDepth = .1f;
 	}
 	
 	public void update() {
@@ -45,13 +48,13 @@ public class GameObject {
 	}
 	
 	public void drawShadow(SpriteBatch batch) {
-		final float depthMult = .1f, scale = .9f;
+		final float scale = .9f;
 		Color oldColor = animation.sprite.getColor();
 		animation.sprite.setColor(new Color(.4f, .4f, .4f, .5f));
 		float oldX = animation.sprite.getX();
 		float oldY = animation.sprite.getY();
-		animation.sprite.setX(oldX + (Game.V_W / 2 - oldX - animation.sprite.getWidth() / 2) * depthMult);
-		animation.sprite.setY(oldY + (Game.V_H / 2 - oldY - animation.sprite.getHeight() / 2) * depthMult);
+		animation.sprite.setX(oldX + (Game.V_W / 2 - oldX - animation.sprite.getWidth() / 2) * shadowDepth);
+		animation.sprite.setY(oldY + (Game.V_H / 2 - oldY - animation.sprite.getHeight() / 2) * shadowDepth);
 		animation.sprite.setScale(scale);
 		animation.sprite.draw(batch);
 		animation.sprite.setColor(oldColor);
