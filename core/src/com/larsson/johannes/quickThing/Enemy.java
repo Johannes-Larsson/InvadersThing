@@ -6,15 +6,12 @@ import com.badlogic.gdx.math.MathUtils;
 
 public class Enemy extends GameObject {
 	
-	protected enum Direction { Left, Right, None }
-	
 	protected final int standardHeight = 200;
 	protected static final int minSpawn = 100;
 	protected static final int maxSpawn = Game.V_W - 100;
 	
 	protected int killScore;
 	protected boolean hasSunk;
-	protected Direction hitWall;
 	protected float sinkSpeed;
 	protected static ArrayList<Bullet> myBullets;
 	protected int shootTime;

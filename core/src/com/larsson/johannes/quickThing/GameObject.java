@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameObject {
+	
+	protected enum Direction { Left, Right, None }
+
+	protected Direction hitWall;
 	public final String type = "base";
 	public String getType() { return type; }
 	
@@ -18,16 +22,20 @@ public class GameObject {
 	public boolean dontCallOnDestroy;
 	public boolean killOnScreenExit;
 	
+	protected float paralax;
+	
 	public GameObject(Animation animation, float x, float y) {
 		this.animation = animation;
 		animation.sprite.setOriginCenter();
 		setX(x);
 		setY(y);
 		shadowDepth = .1f;
+		paralax = GameScene.paralax;
 	}
 	
 	public void update() {
 		move(vx, vy);
+		if (hitWall == Direction.None) move(Scenes.game.player.vx * paralax, 0);
 		if (killOnScreenExit && !isOnScreen()) dead = true;
 		if (dead) {
 			Game.getScene().toRemove.add(this);

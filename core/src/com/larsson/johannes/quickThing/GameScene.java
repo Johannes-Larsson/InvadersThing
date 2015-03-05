@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScene extends Scene {
 	
+	public static final float paralax = .2f;
+	
 	public Player player;
 	public int score;
 	
