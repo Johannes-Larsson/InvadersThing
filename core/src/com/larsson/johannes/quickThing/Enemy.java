@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 public class Enemy extends GameObject {
 	
 	protected final int standardHeight = 200;
-	protected static final int minSpawn = 100;
-	protected static final int maxSpawn = Game.V_W - 100;
+	private static final int spawnPadding = 150;
 	
 	protected int killScore;
 	protected boolean hasSunk;
@@ -19,7 +18,7 @@ public class Enemy extends GameObject {
 	private int shootTimer;
 	
 	public Enemy(Animation animation) {
-		super(animation, MathUtils.random(minSpawn, maxSpawn), Game.V_H);
+		super(animation, getSpawnX(), Game.V_H);
 		move(-getW() / 2, getH());
 		myBullets = new ArrayList<Bullet>();
 		lives = 1;
@@ -27,6 +26,10 @@ public class Enemy extends GameObject {
 		killScore = 10;
 		killOnScreenExit = true;
 		shootTime = -1;
+	}
+	
+	private static float getSpawnX() {
+		return MathUtils.random(spawnPadding, Game.V_W - spawnPadding);
 	}
 	
 	public String getType()	{ return "enemy"; }

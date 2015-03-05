@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScene extends Scene {
 	
-	public static final float paralax = .1f;
+	public static final float paralax = .03f;
 	
 	public Player player;
 	public int score;
@@ -88,7 +88,7 @@ public class GameScene extends Scene {
 		final int clouds = 12, rate = 60;
 		if (cloudCounter <= (rate + 1) * clouds) cloudCounter++;
 		if (cloudCounter % rate == 0) toAdd.add(new Cloud(clouds * rate));
-
+		
 		super.update();
 	}
 	
