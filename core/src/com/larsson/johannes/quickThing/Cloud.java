@@ -13,16 +13,12 @@ public class Cloud extends GameObject {
 		System.out.println(String.valueOf(vy));
 		shadowDepth = .05f;
 		animation.sprite.setAlpha(.7f);
-		paralax = -.2f;
+		paralax = GameScene.paralax * .5f;
 	}
 	
 	public String getType() { return "cloud"; }
 	
 	public void update() {
-		
-		final float paralax = -.2f;		
-		//setX(originalX + paralax * (Scenes.game.player.getCenterX() - Game.V_W / 2));
-		
 		if (getY() < -40) {
 			setX(MathUtils.random(Game.V_W + 100) - 200);
 			setY(Game.V_H + 40);

@@ -31,11 +31,17 @@ public class GameObject {
 		setY(y);
 		shadowDepth = .1f;
 		paralax = GameScene.paralax;
+		hitWall = Direction.None;
 	}
 	
 	public void update() {
-		move(vx, vy);
 		if (hitWall == Direction.None) move(Scenes.game.player.vx * paralax, 0);
+		else {
+			if (hitWall == Direction.Left) move(1, 0);
+			else move(-1, 0);
+		}
+		
+		move(vx, vy);
 		if (killOnScreenExit && !isOnScreen()) dead = true;
 		if (dead) {
 			Game.getScene().toRemove.add(this);
