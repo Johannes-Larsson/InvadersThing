@@ -88,9 +88,6 @@ public class Enemy extends GameObject {
 			}
 		}
 		
-		final float paralax = .1f;
-		if (hitWall == Direction.None) move(Scenes.game.player.vx * paralax, 0);
-		
 		super.update();
 	}
 	
