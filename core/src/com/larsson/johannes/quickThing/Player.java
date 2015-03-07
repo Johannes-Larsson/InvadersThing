@@ -9,7 +9,7 @@ public class Player extends GameObject {
 	
 	final float friction = .82f, acceleration = 2.5f;
 	
-	final int controlAreaW = 300, controlAreaH = 500;
+	final int controlAreaW = 150, controlAreaH = 500;
 	final int rightX = Game.V_W - controlAreaW, rightY = 0;
 	final int leftX = 0, leftY = 0;
 	final int shootX = leftX + controlAreaW, shootY = 0, shootW = Game.V_W - 2 * controlAreaW, shootH = controlAreaH;
@@ -50,13 +50,13 @@ public class Player extends GameObject {
 		if (getX() + getW() > Game.V_W && vx > 0) vx = 0;
 		
 		if (shootCounter == 0) {
-			if (Input.areaIsClicked(shoot2X, shoot2Y, shoot2W, shoot2H)) {
+			if (Input.areaIsClicked(shootX, shootY, shootW, shootH)) {
 				Bullet b = new Bullet(getCenterX(), getCenterY(), 10, (float)(Math.PI / 2) + animation.sprite.getRotation() * MathUtils.degRad, 1);
 				Scenes.game.toAdd.add(b);
 				myBullets.add(b);
 				shootCounter = shootSpeed;
 			}
-			else if (Input.areaWasJustClicked(shootX, shootY, shootW, shootH) && rockets > 0) {
+			else if (Input.areaWasJustClicked(shoot2X, shoot2Y, shoot2W, shoot2H) && rockets > 0) {
 				//add rocket
 				Scenes.game.toAdd.add(new Rocket(getCenterX(), getCenterY()));
 				shootCounter = shootSpeed;
