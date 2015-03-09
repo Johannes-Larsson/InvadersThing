@@ -54,7 +54,7 @@ public class Enemy extends GameObject {
 		if (MathUtils.randomBoolean((killScore  - Scenes.game.player.rockets) / 100f)) Game.getScene().toAdd.add(new Powerup(getX(), getY()));
 	}
 	
-	public void onShoot() {
+	protected void onShoot() {
 		
 	}
 	
@@ -89,6 +89,11 @@ public class Enemy extends GameObject {
 		}
 		
 		super.update();
+	}
+	
+	protected void setSidewaySpeed(float speed) {
+		if (MathUtils.randomBoolean()) vx = speed;
+		else vx = -speed;
 	}
 	
 	protected void moveAwayFromHitWall(float speed) {

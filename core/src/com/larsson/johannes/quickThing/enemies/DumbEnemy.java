@@ -15,7 +15,7 @@ public class DumbEnemy extends Enemy {
 		super(new Animation(Assets.dumbEnemy, 64, 64, 1, 12, 12, 0));
 		lives = 1;
 		killScore = 10;
-		sinkSpeed = .2f;
+		sinkSpeed = .4f;
 	}
 
 	public void update() {
@@ -25,10 +25,10 @@ public class DumbEnemy extends Enemy {
 		else {
 			directionChangeCounter = 0;
 			if (MathUtils.randomBoolean()) {
-				vx = .5f;
+				vx = 1.5f;
 			}
 			else {
-				vx = -.5f;
+				vx = -1.5f;
 			}
 		}
 		

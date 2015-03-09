@@ -20,7 +20,7 @@ public class ShootingEnemy extends Enemy {
 		lives = 1;
 		killScore = 15;
 		sinkSpeed = .1f;
-		shootTime = 120;
+		shootTime = 60;
 	}
 	
 	public void onShoot() {

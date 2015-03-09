@@ -16,11 +16,11 @@ public class SmarterShooter extends Enemy {
 		lives = 1;
 		killScore = 20;
 		sinkSpeed = .07f;
-		shootTime = 150;
+		shootTime = 80;
 	}
 	
 	public void update() {
-		final float speed = .7f;
+		final float speed = 1f;
 		Player p = Scenes.game.player;
 		
 		if (p.getCenterX() > getCenterX()) {

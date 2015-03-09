@@ -15,11 +15,13 @@ public class TripleShooter extends Enemy {
 		lives = 2;
 		killScore = 25;
 		sinkSpeed = .15f;
-		shootTime = 200;
+		shootTime = 100;
+		setSidewaySpeed(.8f);
 	}
 	
 	public void update() {
-		animation.setFrame(lives - 1);		
+		animation.setFrame(lives - 1);	
+		moveAwayFromHitWall(.8f);
 		super.update();
 	}
 	

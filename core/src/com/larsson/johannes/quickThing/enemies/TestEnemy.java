@@ -13,7 +13,7 @@ public class TestEnemy extends Enemy{
 		super(new Animation(Assets.avoidingEnemy, 60, 60, 1, 10, 10, 0));
 		lives = 1;
 		killScore = 10;
-		sinkSpeed = .15f;
+		sinkSpeed = .3f;
 	}
 
 	public void update() {
