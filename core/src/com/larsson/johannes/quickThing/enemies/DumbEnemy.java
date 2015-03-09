@@ -16,6 +16,7 @@ public class DumbEnemy extends Enemy {
 		lives = 1;
 		killScore = 10;
 		sinkSpeed = .4f;
+		setSidewaySpeed(.6f);
 	}
 
 	public void update() {
