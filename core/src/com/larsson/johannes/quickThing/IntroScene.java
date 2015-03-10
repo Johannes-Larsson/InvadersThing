@@ -11,8 +11,8 @@ public class IntroScene extends Scene {
 			"but pay attention!\nsome drop rockets you can shoot",
 			"be sure to pick them up!",
 			"the two lower thirds of the screen\nare split into the following controls: ",
-			"go left | shoot rocket | go right",
-			"the upper third shoots regular bullets",
+			"go left | shoot | go right",
+			"the upper third shoots rockets",
 			"good luck!"
 	};
 	
