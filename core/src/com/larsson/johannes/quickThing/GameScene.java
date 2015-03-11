@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScene extends Scene {
 	
-	static final int MAX_COMBO = 200; 
+	static final int MAX_COMBO = 250; 
 	public static final float PARALAX = -.05f;
 	
 	public Player player;
@@ -73,7 +73,7 @@ public class GameScene extends Scene {
 	
 	public void onEnemyKill() {
 		comboLevel++;
-		comboCounter = MAX_COMBO;
+		comboCounter = MAX_COMBO - comboLevel;
 	}
 
 	public void update() {
@@ -122,6 +122,10 @@ public class GameScene extends Scene {
 		for (GameObject g : objects) if (g.getType() != "cloud") g.draw(batch);
 		drawGUI(batch);
 		//super.draw(batch);
+	}
+	
+	public int getComboLevel() {
+		return comboLevel;
 	}
 	
 	private void drawGUI(SpriteBatch batch) {
