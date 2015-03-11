@@ -24,7 +24,8 @@ public class Assets {
 	tankyEnemy,
 	tripleShooter,
 	sinker,
-	cloud;
+	cloud,
+	pixel;
 	
 	public static void loadAll() {
 		FreeTypeFontGenerator g = new FreeTypeFontGenerator(Gdx.files.internal("C64_Pro_Mono_v1.0-STYLE.ttf"));
@@ -42,5 +43,6 @@ public class Assets {
 		tripleShooter = new Texture("tripleShooter.png");
 		sinker = new Texture("sinker.png");
 		cloud = new Texture("cloud.png");
+		pixel = new Texture("pixel.png");
 	}
 }

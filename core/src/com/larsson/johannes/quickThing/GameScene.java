@@ -147,11 +147,11 @@ public class GameScene extends Scene {
 			final float W = (MAX_W * (comboCounter / (float)MAX_COMBO)) / 2;
 			final float y = padding - extraPadding / 2;
 			final float x = Game.V_W / 2 - W / 2;
-			batch.draw(Assets.bullet, x, y, W, H);
+			batch.setColor(new Color(.4f, .4f, 1, 1));
+			batch.draw(Assets.pixel, x, y, W, H);
+			batch.setColor(Color.WHITE);
 			
-			Assets.smallFont.setColor(Color.BLUE);
 			Assets.smallFont.draw(batch, s, Game.V_W / 2 - Assets.smallFont.getBounds(s).width / 2, padding + Assets.smallFont.getBounds(s).height);
-			Assets.smallFont.setColor(Color.WHITE);
 		}
 	}
 	
