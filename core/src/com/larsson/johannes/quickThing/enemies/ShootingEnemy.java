@@ -12,7 +12,7 @@ public class ShootingEnemy extends Enemy {
 
 	//final int shootTime = 220;
 	
-	private int shootTimer, directionChangeCounter;
+	private int directionChangeCounter;
 	
 	public ShootingEnemy() {
 		super(new Animation(Assets.shootingEnemy, 84, 84, 1, 14, 14, 0));
@@ -20,11 +20,10 @@ public class ShootingEnemy extends Enemy {
 		lives = 1;
 		killScore = 15;
 		sinkSpeed = .1f;
-		shootTime = 60;
+		shootTime = 80;
 	}
 	
 	public void onShoot() {
-		shootTimer = shootTime;
 		Bullet b = new Bullet(getCenterX(), getY(), 7, (float)Math.PI / -2, 1);
 		Scenes.game.toAdd.add(b);
 		myBullets.add(b);
@@ -36,12 +35,7 @@ public class ShootingEnemy extends Enemy {
 		}
 		else {
 			directionChangeCounter = 0;
-			if (MathUtils.randomBoolean()) {
-				vx = 1f;
-			}
-			else {
-				vx = -1f;
-			}
+			setSidewaySpeed(1.3f);
 		}
 		
 		moveAwayFromHitWall(1);

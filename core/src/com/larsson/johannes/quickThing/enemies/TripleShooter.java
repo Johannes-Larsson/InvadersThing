@@ -15,7 +15,7 @@ public class TripleShooter extends Enemy {
 		lives = 2;
 		killScore = 25;
 		sinkSpeed = .15f;
-		shootTime = 100;
+		shootTime = 115;
 		setSidewaySpeed(.8f);
 	}
 	
