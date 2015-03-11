@@ -30,7 +30,7 @@ public class GameObject {
 		setX(x);
 		setY(y);
 		shadowDepth = .1f;
-		paralax = GameScene.paralax;
+		paralax = GameScene.PARALAX;
 		hitWall = Direction.None;
 	}
 	

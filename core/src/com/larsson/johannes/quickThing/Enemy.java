@@ -49,6 +49,7 @@ public class Enemy extends GameObject {
 	
 	public void onDestroy() {
 		Game.getScene().toAdd.add(new Explosion(this));
+		Scenes.game.onEnemyKill();
 		Scenes.game.score += killScore;
 		Scenes.game.toAdd.add(new FloatingText("+" + killScore, getX(), getY(), 60));
 		if (MathUtils.randomBoolean((killScore  - Scenes.game.player.rockets) / 100f)) Game.getScene().toAdd.add(new Powerup(getX(), getY()));

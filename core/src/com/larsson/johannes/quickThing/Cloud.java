@@ -13,7 +13,7 @@ public class Cloud extends GameObject {
 		System.out.println(String.valueOf(vy));
 		shadowDepth = .05f;
 		animation.sprite.setAlpha(.8f);
-		paralax = GameScene.paralax * -1.7f;
+		paralax = GameScene.PARALAX * -1.7f;
 	}
 	
 	public String getType() { return "cloud"; }
