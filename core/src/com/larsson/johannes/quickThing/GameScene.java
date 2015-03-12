@@ -11,14 +11,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScene extends Scene {
 	
-	static final int MAX_COMBO = 250; 
+	static final int COMBO_DECAY_PAUSE = 50;
 	public static final float PARALAX = -.05f;
 	
 	public Player player;
 	public int score;
 	
-	private int comboLevel;
-	private int comboCounter;	
+	private float combo;
+	private int comboDecayPause;
 	private int spawnCounter;
 	private int cloudCounter;
 	private int level;
@@ -72,18 +72,20 @@ public class GameScene extends Scene {
 	}
 	
 	public void onEnemyKill() {
-		comboLevel++;
-		comboCounter = MAX_COMBO - comboLevel;
+		combo += 1;
+		comboDecayPause += COMBO_DECAY_PAUSE * (comboDecayPause > 0 ? .5f : 1);
 	}
 
 	public void update() {
 		spawnCounter -= 1;
 		
-		if (comboCounter > 0) {
-			comboCounter--;
-			if (comboCounter == 0) {
-				comboLevel = 0;
-			}
+		if (comboDecayPause > 0) {
+			comboDecayPause--;
+		}
+		else {
+			combo *= .999f;
+			combo -= .005f;
+			if (combo < 0) combo = 0;
 		}
 		
 		
@@ -124,8 +126,8 @@ public class GameScene extends Scene {
 		//super.draw(batch);
 	}
 	
-	public int getComboLevel() {
-		return comboLevel;
+	public float getCombo() {
+		return combo;
 	}
 	
 	private void drawGUI(SpriteBatch batch) {
@@ -142,21 +144,12 @@ public class GameScene extends Scene {
 		drawImgWithText(batch, Assets.powerup, Game.V_W - padding - 100, height, ": " + player.rockets);
 		drawImgWithText(batch, Assets.player, padding + 100, height, ": " + player.lives);
 		
-		if (comboLevel > 0) {
-			final float MAX_W = 600;
-			String s = "combo: " + comboLevel + "x";
-			TextBounds b = Assets.smallFont.getBounds(s);
-			final float extraPadding = 10;
-			final float H = b.height + extraPadding;
-			final float W = (MAX_W * (comboCounter / (float)MAX_COMBO)) / 2;
-			final float y = padding - extraPadding / 2;
-			final float x = Game.V_W / 2 - W / 2;
-			batch.setColor(new Color(.4f, .4f, 1, 1));
-			batch.draw(Assets.pixel, x, y, W, H);
-			batch.setColor(Color.WHITE);
-			
-			Assets.smallFont.draw(batch, s, Game.V_W / 2 - Assets.smallFont.getBounds(s).width / 2, padding + Assets.smallFont.getBounds(s).height);
-		}
+		String comboS = String.valueOf(combo);
+		String s = "combo: " + 
+		comboS.substring(0, 3 + (int)(combo / 10)) + "x";
+		TextBounds b = Assets.smallFont.getBounds(s);
+		
+		Assets.smallFont.draw(batch, s, Game.V_W / 2 - Assets.smallFont.getBounds(s).width / 2, padding + Assets.smallFont.getBounds(s).height);
 	}
 	
 	private void drawImgWithText(SpriteBatch batch, Texture img, float x, float y, String text) {

@@ -48,7 +48,7 @@ public class Enemy extends GameObject {
 	}
 	
 	public void onDestroy() {
-		int killScore = this.killScore + Scenes.game.getComboLevel() * 1;
+		int killScore = (int)(this.killScore * (1 + Scenes.game.getCombo() * .5f));
 		Game.getScene().toAdd.add(new Explosion(this));
 		Scenes.game.onEnemyKill();
 		Scenes.game.score += killScore;
