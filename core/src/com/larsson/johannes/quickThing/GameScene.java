@@ -42,6 +42,10 @@ public class GameScene extends Scene {
 		player.lives = load("hp", 10);
 		score = load("score", 0);
 		player.rockets = load("rockets", 0);
+		combo = 0;
+		comboDecayPause = 0;
+		cloudCounter = 0;
+		for (GameObject g : objects) if (g.getType() == "cloud") toRemove.add(g);
 	}
 	
 	public void saveGame() {
