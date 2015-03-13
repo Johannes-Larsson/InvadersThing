@@ -90,8 +90,9 @@ public class GameScene extends Scene {
 			comboDecayAcceleration = 0;
 		}
 		else {
-			combo *= (enemiesAlive() > 1 ? .995f : .9999f) - comboDecayAcceleration / 100000f;
+			combo *= (enemiesAlive() > 1 ? .995f : .9999f) - comboDecayAcceleration / 1000000f;
 			comboDecayAcceleration++;
+			comboDecayAcceleration *= .99f;
 			combo -= .005f;
 			if (combo < 0) {
 				combo = 0;
