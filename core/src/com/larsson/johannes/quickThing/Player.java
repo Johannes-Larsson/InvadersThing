@@ -2,6 +2,8 @@ package com.larsson.johannes.quickThing;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 
@@ -37,10 +39,10 @@ public class Player extends GameObject {
 		
 		if (shootCounter > 0) shootCounter--;
 		
-		if (Input.areaIsClicked(leftX, leftY, controlAreaW, controlAreaH)) {
+		if (Input.areaIsClicked(leftX, leftY, controlAreaW, controlAreaH) || Gdx.input.isKeyPressed(Keys.LEFT)) {
 			vx -= acceleration;
 		}
-		if (Input.areaIsClicked(rightX, rightY, controlAreaW, controlAreaH)) {
+		if (Input.areaIsClicked(rightX, rightY, controlAreaW, controlAreaH) || Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			vx += acceleration;
 		}
 		
@@ -50,13 +52,13 @@ public class Player extends GameObject {
 		if (getX() + getW() > Game.V_W && vx > 0) vx = 0;
 		
 		if (shootCounter == 0) {
-			if (Input.areaIsClicked(shootX, shootY, shootW, shootH)) {
+			if (Input.areaIsClicked(shootX, shootY, shootW, shootH) || Gdx.input.isKeyPressed(Keys.X)) {
 				Bullet b = new Bullet(getCenterX(), getCenterY(), 10, (float)(Math.PI / 2) + animation.sprite.getRotation() * MathUtils.degRad, 1);
 				Scenes.game.toAdd.add(b);
 				myBullets.add(b);
 				shootCounter = shootSpeed;
 			}
-			else if (Input.areaWasJustClicked(shoot2X, shoot2Y, shoot2W, shoot2H) && rockets > 0) {
+			else if ((Input.areaIsClicked(shoot2X, shoot2Y, shoot2W, shoot2H) || Gdx.input.isKeyPressed(Keys.C)) && rockets > 0) {
 				//add rocket
 				Scenes.game.toAdd.add(new Rocket(getCenterX(), getCenterY()));
 				shootCounter = shootSpeed;

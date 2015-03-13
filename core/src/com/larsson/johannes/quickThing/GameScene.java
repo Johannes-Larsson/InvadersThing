@@ -19,6 +19,7 @@ public class GameScene extends Scene {
 	
 	private float combo;
 	private int comboDecayPause;
+	private int comboDecayAcceleration;
 	private int spawnCounter;
 	private int cloudCounter;
 	private int level;
@@ -44,6 +45,7 @@ public class GameScene extends Scene {
 		player.rockets = load("rockets", 0);
 		combo = 0;
 		comboDecayPause = 0;
+		comboDecayAcceleration = 0;
 		cloudCounter = 0;
 		for (GameObject g : objects) if (g.getType() == "cloud") toRemove.add(g);
 	}
@@ -85,11 +87,16 @@ public class GameScene extends Scene {
 		
 		if (comboDecayPause > 0) {
 			comboDecayPause--;
+			comboDecayAcceleration = 0;
 		}
 		else {
-			combo *= .999f;
+			combo *= (enemiesAlive() > 1 ? .995f : .9999f) - comboDecayAcceleration / 100000f;
+			comboDecayAcceleration++;
 			combo -= .005f;
-			if (combo < 0) combo = 0;
+			if (combo < 0) {
+				combo = 0;
+				comboDecayAcceleration = 0;
+			}
 		}
 		
 		
