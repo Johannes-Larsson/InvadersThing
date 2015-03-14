@@ -3,6 +3,7 @@ package com.larsson.johannes.quickThing;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.larsson.johannes.quickThing.enemies.AimingEnemy;
 import com.larsson.johannes.quickThing.enemies.DumbEnemy;
 import com.larsson.johannes.quickThing.enemies.ShootingEnemy;
 import com.larsson.johannes.quickThing.enemies.Sinker;
@@ -12,7 +13,7 @@ import com.larsson.johannes.quickThing.enemies.TestEnemy;
 import com.larsson.johannes.quickThing.enemies.TripleShooter;
 
 public class EnemyFactory {
-	static final int noOfEnemyClasses = 7;
+	static final int noOfEnemyClasses = 8;
 	
 	public static Enemy randomEnemy(int min, int max) {
 		
@@ -28,7 +29,7 @@ public class EnemyFactory {
 	public static ArrayList<Enemy> getWave(int level) {
 		ArrayList<Enemy> e = new ArrayList<Enemy>();
 		
-		int max = 1 + level / 3;
+		int max = 1 + level / 3 + MathUtils.random(1);
 		if (max > noOfEnemyClasses - 1) max = noOfEnemyClasses - 1;
 		int min = max - 3;
 		if (min < 0) min = 0;
@@ -52,6 +53,7 @@ public class EnemyFactory {
 		case 4: return new SmarterShooter();
 		case 5: return new TestEnemy();
 		case 6: return new TripleShooter();
+		case 7: return new AimingEnemy();
 		}
 	}
 }

@@ -56,6 +56,12 @@ public class Enemy extends GameObject {
 		if (MathUtils.randomBoolean((killScore  - Scenes.game.player.rockets) / 100f)) Game.getScene().toAdd.add(new Powerup(getX(), getY()));
 	}
 	
+	protected void shoot(float speed, float angle) {
+		Bullet b = new Bullet(getCenterX(), getY(), speed, angle, 1);
+		Scenes.game.toAdd.add(b);
+		myBullets.add(b);
+	}
+	
 	protected void onShoot() {
 		
 	}
