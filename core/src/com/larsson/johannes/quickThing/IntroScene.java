@@ -30,7 +30,7 @@ public class IntroScene extends Scene {
 	
 	public IntroScene() {
 		super.initialize();
-		skip = new Button("skip", 20, 40, 100, 50);
+		skip = new Button("skip", 65, 25);
 	}
 	
 	public void update () {

@@ -7,9 +7,9 @@ public class GameOverScene extends Scene {
 	private Button retry, restart;
 	
 	public GameOverScene() {
-		final int buttonW = 500, buttonH = 120, offset = 60;
-		retry = new Button("retry level", Game.V_W / 2 - buttonW / 2, Game.V_H / 2 - buttonH / 2 + offset, buttonW, buttonH);
-		restart = new Button("restart game", Game.V_W / 2 - buttonW / 2, Game.V_H / 2 - buttonH / 2 - offset, buttonW, buttonH);
+		final float distFromCenter = 30;
+		retry = new Button("retry level", Game.V_W / 2, Game.V_H / 2 - distFromCenter);
+		restart = new Button("restart game", Game.V_W / 2, Game.V_H / 2 + distFromCenter);
 		super.initialize();
 	}
 	
