@@ -39,6 +39,7 @@ public class Enemy extends GameObject {
 			if (!myBullets.contains(g) && !g.dead) {
 				g.dead = true;
 				lives -= Integer.valueOf(g.getType().split(":")[1]);
+				onBulletCollide();
 				//System.out.println("bullet hit, hp = " + lives);
 			}
 		}
@@ -60,6 +61,10 @@ public class Enemy extends GameObject {
 		Bullet b = new Bullet(getCenterX(), getY(), speed, angle, 1);
 		Scenes.game.toAdd.add(b);
 		myBullets.add(b);
+	}
+	
+	protected void onBulletCollide() {
+		
 	}
 	
 	protected void onShoot() {

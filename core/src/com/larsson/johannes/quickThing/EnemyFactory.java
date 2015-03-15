@@ -46,7 +46,6 @@ public class EnemyFactory {
 		switch (i)
 		{
 		default: return new DumbEnemy();
-		case 0: return new DumbEnemy();
 		case 1: return new ShootingEnemy();
 		case 2: return new TankyEnemy();
 		case 3: return new Sinker();
