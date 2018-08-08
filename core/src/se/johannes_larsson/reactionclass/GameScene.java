@@ -125,6 +125,7 @@ public class GameScene extends Scene {
 				saveGame(); 
 				setLevel(getLevel() + 1);
 				spawnCounter = 45;
+				toAdd.add(new LevelIndicator(getLevel()));
 			}
 		}
 		
