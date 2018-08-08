@@ -23,11 +23,10 @@ public class LevelIndicator extends GameObject {
     public void update() {
         if (getX() > Game.V_W + 200) Game.getScene().toRemove.add(this);
         move(speed(getX()), 0);
-        System.out.println("li x " + getX());
     }
 
     public void draw(SpriteBatch batch) {
-        Assets.smallFont.setColor(Color.WHITE);
+        Assets.smallFont.setColor(Scenes.game.paused ? Color.GRAY : Color.WHITE);
         Assets.smallFont.draw(batch, "level " + level, getX()- layout.width / 2, getY());
     }
 

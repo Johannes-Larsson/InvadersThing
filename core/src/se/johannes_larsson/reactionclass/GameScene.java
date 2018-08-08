@@ -2,8 +2,8 @@ package se.johannes_larsson.reactionclass;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -25,6 +25,10 @@ public class GameScene extends Scene {
 	private int level;
 	private ArrayList<Enemy> wave;
 	private GlyphLayout layout;
+
+	private Button resume;
+	private Button menu;
+	private Button quit;
 	
 	public GameScene() {
 		this.initialize();
@@ -39,6 +43,16 @@ public class GameScene extends Scene {
 		loadGame();
 
 		layout = new GlyphLayout();
+
+
+		final float distFromCenter = 30;
+		resume = new Button("resume", Game.V_W / 2, Game.V_H / 2 + distFromCenter);
+		menu = new Button("menu", Game.V_W / 2, Game.V_H / 2 - distFromCenter);
+		quit = new Button("quit", Game.V_W / 2, Game.V_H /2 - distFromCenter * 3);
+	}
+
+	public void onResume() {
+		Gdx.input.setCatchBackKey(true);
 	}
 	
 	public void loadGame() {
@@ -85,6 +99,8 @@ public class GameScene extends Scene {
 		return level;
 	}
 
+	public boolean paused;
+
 	public void setLevel(int level) {
 		this.level = level;
 	}
@@ -95,6 +111,30 @@ public class GameScene extends Scene {
 	}
 
 	public void update() {
+		if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+			paused = true;
+			System.out.println("PAUSED");
+		}
+
+		if (resume.isClicked()) {
+			paused = false;
+			return;
+		}
+
+		if (menu.isClicked()) {
+			Game.setScene(Scenes.menu);
+		}
+
+		if (quit.isClicked()) {
+			Game.preferences.flush();
+			Gdx.app.exit();
+		}
+
+		if (paused) {
+			System.out.println("PAUSED");
+			return;
+		}
+
 		spawnCounter -= 1;
 		
 		if (comboDecayPause > 0) {
@@ -159,6 +199,13 @@ public class GameScene extends Scene {
 		final int padding = 20;
 
 		Assets.smallFont.setColor(Color.WHITE);
+
+		if (paused) {
+			menu.draw(batch);
+			resume.draw(batch);
+			quit.draw(batch);
+			Assets.smallFont.setColor(Color.GRAY);
+		}
 		
 		String scoreS = "score: " + score;
 		String levelS = "level: " + getLevel();
@@ -186,6 +233,7 @@ public class GameScene extends Scene {
 	private void drawImgWithText(SpriteBatch batch, Texture img, float x, float y, String text) {
 		layout.setText(Assets.smallFont, text);
 		float w =  layout.width + 35 + 25;
+		batch.setColor(paused ? Color.GRAY : Color.WHITE);
 		batch.draw(img, x - w / 2, y, 25, 25);
 		Assets.smallFont.draw(batch, text, x + 35 - w / 2, y + layout.height);
 	}

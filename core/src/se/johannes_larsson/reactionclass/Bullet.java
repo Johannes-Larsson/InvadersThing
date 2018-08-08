@@ -1,5 +1,7 @@
 package se.johannes_larsson.reactionclass;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Bullet extends GameObject {
@@ -23,5 +25,10 @@ public class Bullet extends GameObject {
 		vx = (float)Math.cos(angle) * speed;
 		vy = (float)Math.sin(angle) * speed;
 		killOnScreenExit = true;
+	}
+
+	public void draw(SpriteBatch batch) {
+		this.animation.sprite.setColor(Scenes.game.paused ? Color.GRAY : Color.WHITE);
+		super.draw(batch);
 	}
 }

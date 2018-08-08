@@ -1,5 +1,7 @@
 package se.johannes_larsson.reactionclass;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Cloud extends GameObject {
@@ -25,5 +27,10 @@ public class Cloud extends GameObject {
 		}
 		
 		super.update();
+	}
+
+	public void draw(SpriteBatch batch) {
+		this.animation.sprite.setColor(Scenes.game.paused ? Color.GRAY : Color.WHITE);
+		super.draw(batch);
 	}
 }

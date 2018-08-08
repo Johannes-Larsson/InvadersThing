@@ -40,6 +40,11 @@ public class MenuScene extends Scene {
 			Gdx.app.exit();
 		}
 	}
+
+	public void onResume() {
+		Gdx.input.setCatchBackKey(false);
+	}
+
 	
 	public void draw(SpriteBatch batch) {
 		newGame.draw(batch);
