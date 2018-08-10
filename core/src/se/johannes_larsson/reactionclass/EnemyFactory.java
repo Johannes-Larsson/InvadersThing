@@ -29,13 +29,13 @@ public class EnemyFactory {
 	public static ArrayList<Enemy> getWave(int level) {
 		ArrayList<Enemy> e = new ArrayList<Enemy>();
 		
-		int max = 1 + level / 3 + MathUtils.random(1);
+		int max = 1 + level / 2;
 		if (max > noOfEnemyClasses - 1) max = noOfEnemyClasses - 1;
 		int min = max - 3;
 		if (min < 0) min = 0;
 		
-		int no = 5;
-		if (no > level) no = level + 1;
+		int no = 10; // max enemies per level
+		if (no > level) no = (int)(level * .7) + 1;
 		
 		for (int i = 0; i < no; i++) e.add(randomEnemy(min, max));
 		
