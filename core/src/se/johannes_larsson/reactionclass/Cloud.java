@@ -30,7 +30,7 @@ public class Cloud extends GameObject {
 	}
 
 	public void draw(SpriteBatch batch) {
-		this.animation.sprite.setColor(Scenes.game.paused ? Color.GRAY : Color.WHITE);
+		this.animation.sprite.setColor(Scenes.game.getPrimaryColor());
 		super.draw(batch);
 	}
 }

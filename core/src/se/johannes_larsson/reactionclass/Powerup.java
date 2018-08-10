@@ -1,5 +1,7 @@
 package se.johannes_larsson.reactionclass;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 public class Powerup extends GameObject {
 	
 	public Powerup(float x, float y) {
@@ -16,5 +18,10 @@ public class Powerup extends GameObject {
 		}
 		else vy = -2f;
 		super.update();
+	}
+
+	public void draw(SpriteBatch batch) {
+		this.animation.sprite.setColor(Scenes.game.getPrimaryColor());
+		super.draw(batch);
 	}
 }

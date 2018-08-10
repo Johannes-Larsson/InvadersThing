@@ -103,11 +103,14 @@ public class Player extends GameObject {
 			rockets += 1;
 			System.out.println("adding rocket");
 			g.dead = true;
+			Assets.pickup.play();
 		}
 	}
 
 	public void draw(SpriteBatch batch) {
-		this.animation.sprite.setColor(Scenes.game.paused ? Color.GRAY : Color.WHITE);
+		float a = animation.sprite.getColor().a;
+		this.animation.sprite.setColor(Scenes.game.getPrimaryColor());
+		animation.sprite.setAlpha(a);
 		super.draw(batch);
 	}
 }

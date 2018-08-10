@@ -29,6 +29,8 @@ public class GameScene extends Scene {
 	private Button resume;
 	private Button menu;
 	private Button quit;
+
+	private Color primaryColor, secondaryColor;
 	
 	public GameScene() {
 		this.initialize();
@@ -49,6 +51,12 @@ public class GameScene extends Scene {
 		resume = new Button("resume", Game.V_W / 2, Game.V_H / 2 + distFromCenter);
 		menu = new Button("menu", Game.V_W / 2, Game.V_H / 2 - distFromCenter);
 		quit = new Button("quit", Game.V_W / 2, Game.V_H /2 - distFromCenter * 3);
+
+
+		//primaryColor = new Color(0xc65d80ff);
+		primaryColor = Color.WHITE;
+		//secondaryColor = new Color(0x5d80c6);
+		secondaryColor = new Color(.4f, .5f, 1, 1);
 	}
 
 	public void onResume() {
@@ -83,7 +91,17 @@ public class GameScene extends Scene {
 		Game.preferences.putInteger("score", score);
 		Game.preferences.flush();
 	}
-	
+
+
+	public Color getPrimaryColor() {
+		return paused ? Color.GRAY : primaryColor;
+	}
+
+	public Color getSecondaryColor() {
+		return secondaryColor;
+	}
+
+
 	private int load(String key, int def) {
 		if (Game.preferences.contains(key)) return Game.preferences.getInteger(key);
 		else return def;
@@ -198,7 +216,7 @@ public class GameScene extends Scene {
 	private void drawGUI(SpriteBatch batch) {
 		final int padding = 20;
 
-		Assets.smallFont.setColor(Color.WHITE);
+		Assets.smallFont.setColor(primaryColor);
 
 		if (paused) {
 			menu.draw(batch);
@@ -233,7 +251,7 @@ public class GameScene extends Scene {
 	private void drawImgWithText(SpriteBatch batch, Texture img, float x, float y, String text) {
 		layout.setText(Assets.smallFont, text);
 		float w =  layout.width + 35 + 25;
-		batch.setColor(paused ? Color.GRAY : Color.WHITE);
+		batch.setColor(getPrimaryColor());
 		batch.draw(img, x - w / 2, y, 25, 25);
 		Assets.smallFont.draw(batch, text, x + 35 - w / 2, y + layout.height);
 	}

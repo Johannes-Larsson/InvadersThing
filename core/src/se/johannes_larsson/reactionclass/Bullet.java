@@ -25,10 +25,12 @@ public class Bullet extends GameObject {
 		vx = (float)Math.cos(angle) * speed;
 		vy = (float)Math.sin(angle) * speed;
 		killOnScreenExit = true;
+
+		Assets.shoot.play();
 	}
 
 	public void draw(SpriteBatch batch) {
-		this.animation.sprite.setColor(Scenes.game.paused ? Color.GRAY : Color.WHITE);
+		this.animation.sprite.setColor(Scenes.game.getPrimaryColor());
 		super.draw(batch);
 	}
 }

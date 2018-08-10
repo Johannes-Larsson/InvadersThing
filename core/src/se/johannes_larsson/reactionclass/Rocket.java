@@ -1,5 +1,7 @@
 package se.johannes_larsson.reactionclass;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 public class Rocket extends GameObject {
 
 	public Rocket(float x, float y) {
@@ -7,6 +9,7 @@ public class Rocket extends GameObject {
 		vy = 5;
 		move(-getW() / 2, 0);
 		killOnScreenExit = true;
+		Assets.rocket.play();
 	}
 	
 	public String getType() { return "rocket"; }
@@ -25,5 +28,10 @@ public class Rocket extends GameObject {
 			final int size = 200;
 			Game.getScene().toAdd.add(new Explosion(getCenterX() - size / 2, getCenterY() - size / 2, size));
 		}
+	}
+
+	public void draw(SpriteBatch batch) {
+		this.animation.sprite.setColor(Scenes.game.getPrimaryColor());
+		super.draw(batch);
 	}
 }

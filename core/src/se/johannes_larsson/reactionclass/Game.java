@@ -3,6 +3,7 @@ package se.johannes_larsson.reactionclass;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -58,7 +59,12 @@ public class Game extends ApplicationAdapter {
 	public void render () {
 		update();
 		
-		Gdx.gl.glClearColor(.4f, .5f, 1f, 1);
+		if (Scenes.game != null && Scenes.game.getSecondaryColor() != null) {
+			Color c =  Scenes.game.getSecondaryColor();
+			Gdx.gl.glClearColor(c.r, c.g, c.b, 1);
+		} else {
+			Gdx.gl.glClearColor(.4f, .5f, 1f, 1);
+		}
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();

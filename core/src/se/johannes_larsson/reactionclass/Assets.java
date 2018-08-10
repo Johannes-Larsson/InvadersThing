@@ -1,6 +1,7 @@
 package se.johannes_larsson.reactionclass;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,6 +27,14 @@ public class Assets {
 	sinker,
 	cloud,
 	pixel;
+
+	public static Sound
+	blip,
+	explosionSound,
+	hit,
+	pickup,
+	rocket,
+	shoot;
 	
 	public static void loadAll() {
 		FreeTypeFontGenerator g = new FreeTypeFontGenerator(Gdx.files.internal("C64_Pro_Mono-STYLE.ttf"));
@@ -46,5 +55,12 @@ public class Assets {
 		sinker = new Texture("sinker.png");
 		cloud = new Texture("cloud.png");
 		pixel = new Texture("pixel.png");
+
+		blip = Gdx.audio.newSound(Gdx.files.internal("blip.wav"));
+		explosionSound = Gdx.audio.newSound(Gdx.files.internal("explosion.wav"));
+		hit = Gdx.audio.newSound(Gdx.files.internal("hit.wav"));
+		pickup = Gdx.audio.newSound(Gdx.files.internal("pickup.wav"));
+		rocket = Gdx.audio.newSound(Gdx.files.internal("rocket.wav"));
+		shoot = Gdx.audio.newSound(Gdx.files.internal("shoot.wav"));
 	}
 }

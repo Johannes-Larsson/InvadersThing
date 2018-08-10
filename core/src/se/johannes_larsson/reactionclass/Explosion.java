@@ -1,5 +1,7 @@
 package se.johannes_larsson.reactionclass;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 public class Explosion extends GameObject {
 
 	private boolean damaging;
@@ -15,6 +17,8 @@ public class Explosion extends GameObject {
 		super(new Animation(Assets.explosion, size, size, 6, 20, 20, 5), x, y);
 		Game.screenShake += (int)(.3f * size) * (1 - Game.screenShake / 30f);
 		damaging = true;
+
+		Assets.explosionSound.play();
 	}
 	
 	public String getType() { return "explosion"; }
@@ -28,5 +32,10 @@ public class Explosion extends GameObject {
 		if (g.getType() == "enemy" && damaging) {
 			g.dead = true;
 		}
+	}
+
+	public void draw(SpriteBatch batch) {
+		this.animation.sprite.setColor(Scenes.game.getPrimaryColor());
+		super.draw(batch);
 	}
 }

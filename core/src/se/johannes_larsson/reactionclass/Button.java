@@ -24,7 +24,7 @@ public class Button {
 		color = Color.WHITE;
 	}
 	
-	public boolean isClicked() { 
+	public boolean isClicked() {
 		return Input.areaWasJustClicked(x, y, w, h);
 	}
 	

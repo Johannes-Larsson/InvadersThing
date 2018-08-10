@@ -26,7 +26,7 @@ public class LevelIndicator extends GameObject {
     }
 
     public void draw(SpriteBatch batch) {
-        Assets.smallFont.setColor(Scenes.game.paused ? Color.GRAY : Color.WHITE);
+        Assets.smallFont.setColor(Scenes.game.getPrimaryColor());
         Assets.smallFont.draw(batch, "level " + level, getX()- layout.width / 2, getY());
     }
 

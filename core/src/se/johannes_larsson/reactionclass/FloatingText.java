@@ -23,7 +23,7 @@ public class FloatingText extends GameObject {
 	
 	public void draw(SpriteBatch batch) {
 		Color oldColor = Assets.smallFont.getColor();
-		Assets.smallFont.setColor(new Color(1, 1, 1, (float)lifeTime / maxLife));
+		Assets.smallFont.setColor(new Color(Scenes.game.getPrimaryColor().r, Scenes.game.getPrimaryColor().g, Scenes.game.getPrimaryColor().b, (float)lifeTime / maxLife));
 		Assets.smallFont.draw(batch, text, getX(), getY());
 		Assets.smallFont.setColor(oldColor);
 	}
