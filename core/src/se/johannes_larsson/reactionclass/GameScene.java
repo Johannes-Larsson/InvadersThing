@@ -111,7 +111,7 @@ public class GameScene extends Scene {
 	}
 
 	public void update() {
-		if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.BACK) || Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			paused = true;
 			System.out.println("PAUSED");
 		}
@@ -165,7 +165,7 @@ public class GameScene extends Scene {
 				saveGame(); 
 				setLevel(getLevel() + 1);
 				spawnCounter = 45;
-				toAdd.add(new LevelIndicator(getLevel()));
+				if (getLevel() > 0) toAdd.add(new LevelIndicator(getLevel()));
 			}
 		}
 		

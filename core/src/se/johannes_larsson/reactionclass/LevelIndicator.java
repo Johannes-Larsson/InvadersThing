@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class LevelIndicator extends GameObject {
 
     private int level;
-    private final float SPEED = 1e-4f, BASESPEED = 1;
+    private final float SPEED = 3e-4f, BASESPEED = 4;
     private GlyphLayout layout;
 
     public LevelIndicator(int level) {
